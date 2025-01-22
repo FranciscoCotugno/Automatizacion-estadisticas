@@ -4,7 +4,6 @@ from apify_client import ApifyClient
 from openpyxl import Workbook, load_workbook
 import logging
 
-# Configuración del logging
 logging.basicConfig(
     filename="tiktok_automatizacion.log",
     level=logging.INFO,
@@ -24,7 +23,7 @@ def obtener_datos_tiktok(cuentas: list, apify_token: str, limite: int = 50) -> d
             run = client.actor("0FXVyOXXEmdGcV88a").call(
                 run_input={
                     "profiles": [cuenta],
-                    "resultsLimit": limite,  # Configura el límite deseado
+                    "resultsLimit": limite,  
                     "resultsPerPage": limite
                 }
             )
@@ -72,7 +71,7 @@ def guardar_en_excel(dataframes: dict, nombre_archivo: str):
             libro = load_workbook(nombre_archivo)
         except FileNotFoundError:
             libro = Workbook()
-            libro.remove(libro.active)  # Elimina la hoja predeterminada
+            libro.remove(libro.active)  
         
         for cuenta, df in dataframes.items():
             if cuenta in libro.sheetnames:
@@ -96,7 +95,7 @@ def guardar_en_excel(dataframes: dict, nombre_archivo: str):
 
 def main():
     """
-    Función principal que ejecuta el flujo de extracción y guardado de datos.
+    Función principal 
     """
     apify_token = "apify_api_9yE5TuLq4QD9rEI6Z4t1PfTDLhPo663uxcS4"  #TOKEN API SE CAMBIA DEPENDIENDO DE TU CUENTA DE APIFY, ESTE ES EL MIO 
                                                                     #(NO SE PUEDE COMPARTIR PORQUE CON ESE TOKEN TE PUEDE ROBAR LOS DATOS)
